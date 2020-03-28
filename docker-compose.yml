@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  marc-proxy:
+    container_name: marc-proxy
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - "80:80"
+    depends_on:
+      - marc-service
+  marc-service:
+    image: bigmarco254/etsyocalypse-marc-service
+    ports:
+      - "8080:8080"
+  brian-service:
+    image: bpg031000/node-docker-etsy-poc-item-info
+    ports:
+      - "4321:4321"
